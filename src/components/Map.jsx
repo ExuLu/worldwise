@@ -15,6 +15,9 @@ const Map = () => {
           Position: {lat}, {lng}
         </h2>
       )}
+      <button onClick={() => setSearchParams({ lat: 23, lng: 51 })}>
+        Change position
+      </button>
     </div>
   );
 };
