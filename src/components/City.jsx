@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 function City() {
   const { id } = useParams();
-  console.log(id);
 
   // TEMP DATA
   const currentCity = {
