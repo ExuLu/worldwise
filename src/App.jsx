@@ -11,26 +11,29 @@ import Login from './pages/Login.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import Pricing from './pages/Pricing.jsx';
 import Product from './pages/Product.jsx';
+import { CitiesProvider } from './contexts/CitiesContext.jsx';
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Homepage />} />
-          <Route path='product' element={<Product />} />
-          <Route path='pricing' element={<Pricing />} />
-          <Route path='login' element={<Login />} />
-          <Route path='app' element={<AppLayout />}>
-            <Route index element={<Navigate replace to='cities' />} />
-            <Route path='cities' element={<CityList />} />
-            <Route path='cities/:id' element={<City />} />
-            <Route path='countries' element={<CountryList />} />
-            <Route path='form' element={<Form />} />
-          </Route>
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <CitiesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Homepage />} />
+            <Route path='product' element={<Product />} />
+            <Route path='pricing' element={<Pricing />} />
+            <Route path='login' element={<Login />} />
+            <Route path='app' element={<AppLayout />}>
+              <Route index element={<Navigate replace to='cities' />} />
+              <Route path='cities' element={<CityList />} />
+              <Route path='cities/:id' element={<City />} />
+              <Route path='countries' element={<CountryList />} />
+              <Route path='form' element={<Form />} />
+            </Route>
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </CitiesProvider>
     </div>
   );
 };
