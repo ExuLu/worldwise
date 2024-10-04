@@ -1,17 +1,11 @@
 import styles from './City.module.css';
 import formatDate from '../utils/dateFormatting';
 import { useParams } from 'react-router-dom';
-import { useCities } from '../contexts/CitiesContext';
-import Spinner from './Spinner';
+import { useState } from 'react';
 
 function City() {
   const { id } = useParams();
-
-  const { cities, isLoading } = useCities();
-
-  if (isLoading) return <Spinner />;
-
-  const currentCity = cities.find((city) => city.id === id);
+  
 
   const { cityName, emoji, date, notes } = currentCity;
 
