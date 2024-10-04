@@ -1,13 +1,15 @@
 import styles from './City.module.css';
 import formatDate from '../utils/dateFormatting';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useCities } from '../contexts/CitiesContext';
 import Spinner from './Spinner';
+import Button from './Button';
 
 function City() {
   const { id } = useParams();
   const { getCity, currentCity, isLoading } = useCities();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCity(id);
@@ -49,7 +51,15 @@ function City() {
         </a>
       </div>
 
-      <div></div>
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(-1);
+        }}
+        type='back'
+      >
+        &larr; Back
+      </Button>
     </div>
   );
 }
