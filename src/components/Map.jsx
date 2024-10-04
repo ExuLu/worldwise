@@ -31,7 +31,10 @@ const Map = () => {
             key={city.id}
             position={[city.position.lat, city.position.lng]}
           >
-            <Popup>{city.cityName}</Popup>
+            <Popup>
+              <span>{city.emoji}</span>
+              <span>{city.cityName}</span>
+            </Popup>
           </Marker>
         ))}
       </MapContainer>
