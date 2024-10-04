@@ -18,10 +18,10 @@ const Map = () => {
         className={styles.map}
         center={mapPosition}
         zoom={13}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.fr/hot/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
         <Marker position={mapPosition}>
