@@ -26,20 +26,17 @@ const CitiesProvider = ({ children }) => {
     fetchCities();
   }, []);
 
-  const getCity = (id) => {
-    const fetchCity = async () => {
-      try {
-        setIsLoading(true);
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
-        setCurrentCity(data);
-      } catch {
-        alert('There was an error while loading data...');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchCity;
+  const getCity = async (id) => {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities/${id}`);
+      const data = await res.json();
+      setCurrentCity(data);
+    } catch {
+      alert('There was an error while loading data...');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

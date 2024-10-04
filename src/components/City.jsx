@@ -1,11 +1,16 @@
 import styles from './City.module.css';
 import formatDate from '../utils/dateFormatting';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useCities } from '../contexts/CitiesContext';
 
 function City() {
   const { id } = useParams();
-  
+  const { getCity, currentCity } = useCities();
+
+  useEffect(() => {
+    getCity(id);
+  }, [id]);
 
   const { cityName, emoji, date, notes } = currentCity;
 
