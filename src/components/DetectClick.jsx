@@ -7,7 +7,7 @@ const DetectClick = () => {
   useMapEvents({
     click: (e) => {
       const { lat, lng } = e.latlng;
-      navigate('form');
+      navigate(`form?lat=${lat}&lng=${lng}`);
     },
   });
 
