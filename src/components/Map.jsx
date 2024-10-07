@@ -4,6 +4,7 @@ import styles from './Map.module.css';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { useState } from 'react';
 import { useCities } from '../contexts/CitiesContext';
+import ChangeCenter from './ChangeCenter';
 
 const Map = () => {
   const navigate = useNavigate();
@@ -11,14 +12,15 @@ const Map = () => {
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get('lat');
-  const lng = searchParams.get('lng');
+  const mapLat = searchParams.get('lat');
+  const mapLng = searchParams.get('lng');
 
   return (
     <div className={styles.mapContainer}>
       <MapContainer
         className={styles.map}
-        center={mapPosition}
+        // center={mapPosition}
+        center={mapLat && mapLng ? [mapLat, mapLng] : mapPosition}
         zoom={13}
         scrollWheelZoom={true}
       >
@@ -37,6 +39,7 @@ const Map = () => {
             </Popup>
           </Marker>
         ))}
+        <ChangeCenter position={mapLat && mapLng ? [mapLat, mapLng] : mapPosition}/>
       </MapContainer>
     </div>
   );
