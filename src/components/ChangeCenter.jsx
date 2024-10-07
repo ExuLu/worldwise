@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ChangeCenter = ({ position }) => {
   const map = useMap();
-  map.setView(position);
+  map.setView(position, 6);
   return null;
 };
 

@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import styles from './Map.module.css';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCities } from '../contexts/CitiesContext';
 import ChangeCenter from './ChangeCenter';
 
@@ -15,13 +15,16 @@ const Map = () => {
   const mapLat = searchParams.get('lat');
   const mapLng = searchParams.get('lng');
 
+  useEffect(() => {
+    if (mapLng && mapLat) setMapPosition([mapLat, mapLng]);
+  }, [mapLng, mapLat]);
+
   return (
     <div className={styles.mapContainer}>
       <MapContainer
         className={styles.map}
-        // center={mapPosition}
-        center={mapLat && mapLng ? [mapLat, mapLng] : mapPosition}
-        zoom={13}
+        center={mapPosition}
+        zoom={6}
         scrollWheelZoom={true}
       >
         <TileLayer
@@ -39,7 +42,7 @@ const Map = () => {
             </Popup>
           </Marker>
         ))}
-        <ChangeCenter position={mapLat && mapLng ? [mapLat, mapLng] : mapPosition}/>
+        <ChangeCenter position={mapPosition} />
       </MapContainer>
     </div>
   );
