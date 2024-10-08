@@ -5,11 +5,15 @@ import { useEffect, useState } from 'react';
 import styles from './Form.module.css';
 import Button from './Button';
 import BackButton from './BackButton';
+import Message from './Message';
+import Spinner from './Spinner';
+import DatePicker from 'react-datepicker';
+
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { convertToEmoji } from '../utils/convertToEmoji';
 import formatDate from '../utils/dateFormatting';
-import Message from './Message';
-import Spinner from './Spinner';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Form() {
   const [lat, lng] = useUrlPosition();
@@ -80,11 +84,12 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor='date'>When did you go to {cityName}?</label>
-        <input
+        {/* <input
           id='date'
           onChange={(e) => setDate(e.target.value)}
           value={formatDate(date)}
-        />
+        /> */}
+        <DatePicker />
       </div>
 
       <div className={styles.row}>
