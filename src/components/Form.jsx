@@ -6,11 +6,13 @@ import styles from './Form.module.css';
 import Button from './Button';
 import BackButton from './BackButton';
 import { useUrlPosition } from '../hooks/useUrlPosition';
+import { convertToEmoji } from '../utils/convertToEmoji';
 
 function Form() {
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
+  const [countryCode, setCountryCode] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
 
@@ -26,8 +28,7 @@ function Form() {
         const data = await res.json();
         setCityName(data.city);
         setCountry(data.countryName);
-
-        console.log(cityName, country);
+        setCountryCode(data.countryCode);
       } catch {
         throw new Error('Fail to load city data');
       } finally {
@@ -35,7 +36,7 @@ function Form() {
       }
     };
     fetchCityData();
-  }, [lat, lng, cityName, country]);
+  }, [lat, lng]);
 
   return (
     <form className={styles.form}>
@@ -46,7 +47,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{convertToEmoji(countryCode)}</span>
       </div>
 
       <div className={styles.row}>
