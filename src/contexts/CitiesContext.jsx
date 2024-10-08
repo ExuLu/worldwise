@@ -63,12 +63,9 @@ const CitiesProvider = ({ children }) => {
       setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
-        body: { id },
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
       const data = await res.json();
+      console.log(data);
       setCities((cities) => cities.filter((city) => city.id !== id));
     } catch {
       alert('There was an error while deleting data...');
