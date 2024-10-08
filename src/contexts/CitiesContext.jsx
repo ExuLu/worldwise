@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 const BASE_URL = 'http://localhost:8000';
@@ -73,17 +73,8 @@ const CitiesProvider = ({ children }) => {
   );
 };
 
-const useCities = () => {
-  const context = useContext(CitiesContext);
-
-  if (context === undefined)
-    throw new Error('Cities context was used outside of Cities provider');
-
-  return context;
-};
-
 CitiesProvider.propTypes = {
   children: PropTypes.element,
 };
 
-export { CitiesProvider, useCities };
+export { CitiesProvider, CitiesContext };

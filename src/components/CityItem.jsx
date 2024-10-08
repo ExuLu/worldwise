@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import formatDate from '../utils/dateFormatting';
 import styles from './CityItem.module.css';
 import PropTypes from 'prop-types';
-import { useCities } from '../contexts/CitiesContext';
+import { useCities } from '../hooks/useCities';
 
 const CityItem = ({ city }) => {
   const { currentCity } = useCities();

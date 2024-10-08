@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import styles from './Map.module.css';
-import { useCities } from '../contexts/CitiesContext';
+import { useCities } from '../hooks/useCities';
 import ChangeCenter from './ChangeCenter';
 import DetectClick from './DetectClick';
 import { useGeolocation } from '../hooks/useGeolocation';

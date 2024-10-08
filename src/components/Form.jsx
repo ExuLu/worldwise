@@ -13,7 +13,7 @@ import { useUrlPosition } from '../hooks/useUrlPosition';
 import { convertToEmoji } from '../utils/convertToEmoji';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import { useCities } from '../contexts/CitiesContext';
+import { useCities } from '../hooks/useCities';
 import { useNavigate } from 'react-router-dom';
 
 function Form() {
