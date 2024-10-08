@@ -16,7 +16,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useCities } from '../contexts/CitiesContext';
 
 function Form() {
-  const { createCity } = useCities();
+  const { createCity, isLoading } = useCities();
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
@@ -76,6 +76,7 @@ function Form() {
     setCityName('');
     setEmoji('');
     setCountry('');
+    setNotes('');
   };
 
   if (isLoadingGeocoding) return <Spinner />;
@@ -86,7 +87,10 @@ function Form() {
   if (geocodingError) return <Message message={geocodingError} />;
 
   return (
-    <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ''}`}
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <div className={styles.row}>
         <label htmlFor='cityName'>City name</label>
         <input
