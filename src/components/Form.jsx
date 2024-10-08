@@ -58,6 +58,9 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!cityName || !date) return;
+
     setCityName('');
     setEmoji('');
     setCountry('');
