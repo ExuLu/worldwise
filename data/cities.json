@@ -47,6 +47,18 @@
         "lat": "43.51668853502909",
         "lng": "1.3842773437500002"
       }
+    },
+    {
+      "id": "2fd0",
+      "cityName": "Tbilisi",
+      "country": "Georgia",
+      "emoji": "🇬🇪",
+      "date": "2024-10-08T17:24:43.111Z",
+      "notes": "One of favourite cities",
+      "position": {
+        "lat": "41.724180549563606",
+        "lng": "44.83245849609376"
+      }
     }
   ]
 }
