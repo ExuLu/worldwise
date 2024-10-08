@@ -59,7 +59,7 @@ function Form() {
     fetchCityData();
   }, [lat, lng]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!cityName || !date) return;
@@ -73,13 +73,8 @@ function Form() {
       position: { lat, lng },
     };
 
-    createCity(newCity);
+    await createCity(newCity);
     navigate('/app/cities');
-
-    setCityName('');
-    setEmoji('');
-    setCountry('');
-    setNotes('');
   };
 
   if (isLoadingGeocoding) return <Spinner />;
