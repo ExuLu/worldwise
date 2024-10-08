@@ -61,6 +61,16 @@ function Form() {
 
     if (!cityName || !date) return;
 
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+    console.log(newCity);
+
     setCityName('');
     setEmoji('');
     setCountry('');
