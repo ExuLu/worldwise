@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useCities } from '../hooks/useCities';
 
 const CityItem = ({ city }) => {
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
 
   const isCurrentCity = currentCity.id === city.id;
 
@@ -16,6 +16,10 @@ const CityItem = ({ city }) => {
     id,
     position: { lat, lng },
   } = city;
+
+  const handleDelete = async () => {
+    await deleteCity;
+  };
 
   return (
     <li>
@@ -28,7 +32,9 @@ const CityItem = ({ city }) => {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>({formatDate(date)})</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button onClick={handleDelete} className={styles.deleteBtn}>
+          &times;
+        </button>
       </Link>
     </li>
   );
