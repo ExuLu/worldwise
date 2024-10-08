@@ -7,6 +7,7 @@ import Button from './Button';
 import BackButton from './BackButton';
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { convertToEmoji } from '../utils/convertToEmoji';
+import formatDate from '../utils/dateFormatting';
 import Message from './Message';
 import Spinner from './Spinner';
 
@@ -82,7 +83,7 @@ function Form() {
         <input
           id='date'
           onChange={(e) => setDate(e.target.value)}
-          value={date}
+          value={formatDate(date)}
         />
       </div>
 
