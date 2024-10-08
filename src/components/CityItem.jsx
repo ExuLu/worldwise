@@ -17,8 +17,9 @@ const CityItem = ({ city }) => {
     position: { lat, lng },
   } = city;
 
-  const handleDelete = async () => {
-    await deleteCity;
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await deleteCity(id);
   };
 
   return (
