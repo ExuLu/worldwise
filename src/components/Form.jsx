@@ -12,23 +12,23 @@ function Form() {
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
-  const [countryCode, setCountryCode] = useState('');
+  const [emoji, setEmoji] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
 
+  const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
+
   useEffect(() => {
     const fetchCityData = async () => {
       try {
         setIsLoadingGeocoding(true);
-        const res = await fetch(
-          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
-        );
+        const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
-        setCityName(data.city);
+        setCityName(data.city || data.locality);
         setCountry(data.countryName);
-        setCountryCode(data.countryCode);
+        setEmoji(convertToEmoji(data.countryCode));
       } catch {
         throw new Error('Fail to load city data');
       } finally {
@@ -47,7 +47,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        <span className={styles.flag}>{convertToEmoji(countryCode)}</span>
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
