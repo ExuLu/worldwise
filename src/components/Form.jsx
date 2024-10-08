@@ -5,18 +5,12 @@ import { useState } from 'react';
 import styles from './Form.module.css';
 import Button from './Button';
 import BackButton from './BackButton';
-
-export function convertToEmoji(countryCode) {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt());
-  return String.fromCodePoint(...codePoints);
-}
+import { useUrlPosition } from '../hooks/useUrlPosition';
 
 function Form() {
+  const [mapLat, mapLng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
-  // const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
 
