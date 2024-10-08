@@ -1,9 +1,11 @@
-import { useMap } from 'react-leaflet';
 import PropTypes from 'prop-types';
 
+import { useMap } from 'react-leaflet';
 const ChangeCenter = ({ position }) => {
   const map = useMap();
+
   map.setView(position, 6);
+  
   return null;
 };
 

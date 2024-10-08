@@ -1,8 +1,10 @@
 import CityItem from './CityItem';
-import styles from './CityList.module.css';
 import Spinner from './Spinner';
 import Message from './Message';
+
 import { useCities } from '../hooks/useCities';
+
+import styles from './CityList.module.css';
 
 const CityList = () => {
   const { cities, isLoading } = useCities();

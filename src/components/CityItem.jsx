@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
-import formatDate from '../utils/dateFormatting';
-import styles from './CityItem.module.css';
 import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
+
 import { useCities } from '../hooks/useCities';
+
+import formatDate from '../utils/dateFormatting';
+
+import styles from './CityItem.module.css';
 
 const CityItem = ({ city }) => {
   const { currentCity, deleteCity } = useCities();

@@ -11,6 +11,7 @@ import Login from './pages/Login.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import Pricing from './pages/Pricing.jsx';
 import Product from './pages/Product.jsx';
+
 import { CitiesProvider } from './contexts/CitiesContext.jsx';
 
 const App = () => {

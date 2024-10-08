@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
-import styles from './Map.module.css';
-import { useCities } from '../hooks/useCities';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import Button from './Button';
 import ChangeCenter from './ChangeCenter';
 import DetectClick from './DetectClick';
+import { useCities } from '../hooks/useCities';
+
 import { useGeolocation } from '../hooks/useGeolocation';
-import Button from './Button';
 import { useUrlPosition } from '../hooks/useUrlPosition';
+
+import styles from './Map.module.css';
 
 const Map = () => {
   const { cities } = useCities();

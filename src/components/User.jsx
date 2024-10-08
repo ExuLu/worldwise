@@ -1,13 +1,13 @@
-import styles from "./User.module.css";
+import styles from './User.module.css';
 
 const FAKE_USER = {
-  name: "Jack",
-  email: "jack@example.com",
-  password: "qwerty",
-  avatar: "https://i.pravatar.cc/100?u=zz",
+  name: 'Jack',
+  email: 'jack@example.com',
+  password: 'qwerty',
+  avatar: 'https://i.pravatar.cc/100?u=zz',
 };
 
-function User() {
+const User = () => {
   const user = FAKE_USER;
 
   function handleClick() {}
@@ -19,7 +19,7 @@ function User() {
       <button onClick={handleClick}>Logout</button>
     </div>
   );
-}
+};
 
 export default User;
 

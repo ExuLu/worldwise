@@ -1,17 +1,22 @@
-import styles from './City.module.css';
-import formatDate from '../utils/dateFormatting';
-import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useCities } from '../hooks/useCities';
+import { useParams } from 'react-router-dom';
+
 import Spinner from './Spinner';
 import BackButton from './BackButton';
 
-function City() {
+import { useCities } from '../hooks/useCities';
+
+import formatDate from '../utils/dateFormatting';
+
+import styles from './City.module.css';
+
+const City = () => {
   const { id } = useParams();
   const { getCity, currentCity, isLoading } = useCities();
 
   useEffect(() => {
     getCity(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const { cityName, emoji, date, notes } = currentCity;
@@ -53,6 +58,6 @@ function City() {
       <BackButton />
     </div>
   );
-}
+};
 
 export default City;

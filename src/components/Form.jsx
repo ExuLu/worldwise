@@ -1,6 +1,7 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Form.module.css';
 import Button from './Button';
@@ -10,13 +11,13 @@ import Spinner from './Spinner';
 import DatePicker from 'react-datepicker';
 
 import { useUrlPosition } from '../hooks/useUrlPosition';
+import { useCities } from '../hooks/useCities';
+
 import { convertToEmoji } from '../utils/convertToEmoji';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import { useCities } from '../hooks/useCities';
-import { useNavigate } from 'react-router-dom';
 
-function Form() {
+const Form = () => {
   const { createCity, isLoading } = useCities();
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
@@ -124,6 +125,6 @@ function Form() {
       </div>
     </form>
   );
-}
+};
 
 export default Form;
