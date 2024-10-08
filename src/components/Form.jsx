@@ -1,6 +1,6 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './Form.module.css';
 import Button from './Button';
@@ -8,11 +8,34 @@ import BackButton from './BackButton';
 import { useUrlPosition } from '../hooks/useUrlPosition';
 
 function Form() {
-  const [mapLat, mapLng] = useUrlPosition();
+  const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
+
+  const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
+
+  useEffect(() => {
+    const fetchCityData = async () => {
+      try {
+        setIsLoadingGeocoding(true);
+        const res = await fetch(
+          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+        );
+        const data = await res.json();
+        setCityName(data.city);
+        setCountry(data.countryName);
+
+        console.log(cityName, country);
+      } catch {
+        throw new Error('Fail to load city data');
+      } finally {
+        setIsLoadingGeocoding(false);
+      }
+    };
+    fetchCityData();
+  }, [lat, lng, cityName, country]);
 
   return (
     <form className={styles.form}>
