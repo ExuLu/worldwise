@@ -52,7 +52,7 @@ const CitiesProvider = ({ children }) => {
       const data = await res.json();
       setCities((cities) => [...cities, data]);
     } catch {
-      alert('There was an error while uploading data...');
+      alert('There was an error while creating data...');
     } finally {
       setIsLoading(false);
     }
@@ -61,11 +61,9 @@ const CitiesProvider = ({ children }) => {
   const deleteCity = async (id) => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+      await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
-      const data = await res.json();
-      console.log(data);
       setCities((cities) => cities.filter((city) => city.id !== id));
     } catch {
       alert('There was an error while deleting data...');
