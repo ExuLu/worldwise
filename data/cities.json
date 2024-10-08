@@ -37,18 +37,6 @@
       "id": "98443197"
     },
     {
-      "id": "cd73",
-      "cityName": "Portet-sur-Garonne",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-10-08T17:20:56.703Z",
-      "notes": "",
-      "position": {
-        "lat": "43.51668853502909",
-        "lng": "1.3842773437500002"
-      }
-    },
-    {
       "id": "2fd0",
       "cityName": "Tbilisi",
       "country": "Georgia",
@@ -61,27 +49,27 @@
       }
     },
     {
-      "id": "fa84",
-      "cityName": "Paris",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-10-08T17:28:22.764Z",
-      "notes": "Want to go",
+      "id": "191e",
+      "cityName": "Palma",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-10-08T17:31:12.745Z",
+      "notes": "",
       "position": {
-        "lat": "48.83579746243093",
-        "lng": "2.3620605468750004"
+        "lat": "39.53793974517628",
+        "lng": "2.79052734375"
       }
     },
     {
-      "id": "f976",
-      "cityName": "Hannover",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2024-10-08T17:28:22.764Z",
+      "id": "f87c",
+      "cityName": "Palma",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-10-08T17:31:21.740Z",
       "notes": "",
       "position": {
-        "lat": "52.36218321674427",
-        "lng": "9.689941406250002"
+        "lat": "39.53793974517628",
+        "lng": "2.79052734375"
       }
     }
   ]

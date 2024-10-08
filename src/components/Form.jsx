@@ -14,6 +14,7 @@ import { convertToEmoji } from '../utils/convertToEmoji';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { useCities } from '../contexts/CitiesContext';
+import { useNavigate } from 'react-router-dom';
 
 function Form() {
   const { createCity, isLoading } = useCities();
@@ -24,6 +25,7 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
   const [geocodingError, setGeocodingError] = useState('');
+  const navigate = useNavigate();
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
 
@@ -72,6 +74,7 @@ function Form() {
     };
 
     createCity(newCity);
+    navigate('/app/cities');
 
     setCityName('');
     setEmoji('');
