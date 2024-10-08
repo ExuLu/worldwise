@@ -7,6 +7,8 @@ import Button from './Button';
 import BackButton from './BackButton';
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { convertToEmoji } from '../utils/convertToEmoji';
+import Message from './Message';
+import Spinner from './Spinner';
 
 function Form() {
   const [lat, lng] = useUrlPosition();
@@ -15,6 +17,7 @@ function Form() {
   const [emoji, setEmoji] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
+  const [geocodingError, setGeocodingError] = useState('');
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
 
@@ -24,6 +27,7 @@ function Form() {
     const fetchCityData = async () => {
       try {
         setIsLoadingGeocoding(true);
+        setGeocodingError('');
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
 
@@ -36,14 +40,18 @@ function Form() {
         setCityName(data.city || data.locality);
         setCountry(data.countryName);
         setEmoji(convertToEmoji(data.countryCode));
-      } catch (error) {clea
-        alert(error.message);
+      } catch (error) {
+        setGeocodingError(error.message);
       } finally {
         setIsLoadingGeocoding(false);
       }
     };
     fetchCityData();
   }, [lat, lng]);
+
+  if (isLoadingGeocoding) return <Spinner />;
+
+  if (geocodingError) return <Message message={geocodingError} />;
 
   return (
     <form className={styles.form}>
