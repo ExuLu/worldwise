@@ -11,11 +11,12 @@ import DatePicker from 'react-datepicker';
 
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { convertToEmoji } from '../utils/convertToEmoji';
-import formatDate from '../utils/dateFormatting';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { useCities } from '../contexts/CitiesContext';
 
 function Form() {
+  const { createCity } = useCities();
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
@@ -69,7 +70,8 @@ function Form() {
       notes,
       position: { lat, lng },
     };
-    console.log(newCity);
+
+    createCity(newCity);
 
     setCityName('');
     setEmoji('');
