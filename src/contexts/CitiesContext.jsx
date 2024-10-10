@@ -63,7 +63,7 @@ const CitiesProvider = ({ children }) => {
       } catch (err) {
         dispatch({
           type: 'rejected',
-          payload: 'There was an error while loading data...',
+          payload: 'There was an error while loading cities...',
         });
       }
     };
@@ -79,7 +79,7 @@ const CitiesProvider = ({ children }) => {
     } catch {
       dispatch({
         type: 'rejected',
-        payload: 'There was an error while loading data...',
+        payload: 'There was an error while loading city...',
       });
     }
   };
@@ -97,7 +97,10 @@ const CitiesProvider = ({ children }) => {
       const data = await res.json();
       setCities((cities) => [...cities, data]);
     } catch {
-      alert('There was an error while creating data...');
+      dispatch({
+        type: 'rejected',
+        payload: 'There was an error while creating city...',
+      });
     }
   };
 
@@ -110,7 +113,10 @@ const CitiesProvider = ({ children }) => {
       });
       setCities((cities) => cities.filter((city) => city.id !== id));
     } catch {
-      alert('There was an error while deleting data...');
+      dispatch({
+        type: 'rejected',
+        payload: 'There was an error while deleting city...',
+      });
     }
   };
 
