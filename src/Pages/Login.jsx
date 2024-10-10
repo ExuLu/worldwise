@@ -6,6 +6,7 @@ import PageNav from '../components/PageNav';
 import { useAuth } from '../hooks/useAuth';
 
 import styles from './Login.module.css';
+import Button from '../components/Button';
 
 const Login = () => {
   // PRE-FILL FOR DEV PURPOSES
@@ -20,10 +21,15 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(email, password);
+  };
+
   return (
     <main className={styles.login}>
       <PageNav />
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label htmlFor='email'>Email address</label>
           <input
@@ -45,7 +51,7 @@ const Login = () => {
         </div>
 
         <div>
-          <button>Login</button>
+          <Button type='primary'>Login</Button>
         </div>
       </form>
     </main>

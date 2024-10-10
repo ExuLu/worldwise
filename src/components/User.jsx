@@ -1,3 +1,4 @@
+import { useAuth } from '../hooks/useAuth';
 import styles from './User.module.css';
 
 const FAKE_USER = {
@@ -8,7 +9,9 @@ const FAKE_USER = {
 };
 
 const User = () => {
-  const user = FAKE_USER;
+  const { user } = useAuth();
+
+  // const user = FAKE_USER;
 
   function handleClick() {}
 
