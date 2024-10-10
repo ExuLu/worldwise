@@ -37,7 +37,9 @@ const AuthProvider = ({ children }) => {
       dispatch({ type: 'login', payload: FAKE_USER });
   };
 
-  const logout = () => {};
+  const logout = () => {
+    dispatch({ type: 'logout' });
+  };
 
   return (
     <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
