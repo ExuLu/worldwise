@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useReducer } from 'react';
+import { useEffect, createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 const BASE_URL = 'http://localhost:8000';
@@ -31,17 +31,19 @@ const reducer = (state, action) => {
         isLoading: false,
         currentCity: action.payload,
       };
-    case 'cities/created':
+    case 'city/created':
       return {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
-    case 'cities/deleted':
+    case 'city/deleted':
       return {
         ...state,
         isLoading: false,
         cities: [...state.cities].filter((city) => city.id !== action.payload),
+        currentCity: {},
       };
     case 'rejected':
       return {
@@ -59,9 +61,6 @@ const CitiesProvider = ({ children }) => {
     reducer,
     initialState
   );
-  // const [cities, setCities] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [currentCity, setCurrentCity] = useState({});
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -105,7 +104,7 @@ const CitiesProvider = ({ children }) => {
         },
       });
       const data = await res.json();
-      dispatch({ type: 'cities/created', payload: data });
+      dispatch({ type: 'city/created', payload: data });
     } catch {
       dispatch({
         type: 'rejected',
@@ -116,12 +115,11 @@ const CitiesProvider = ({ children }) => {
 
   const deleteCity = async (id) => {
     dispatch({ type: 'loading' });
-
     try {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
-      dispatch({ type: 'cities/deleted', payload: id });
+      dispatch({ type: 'city/deleted', payload: id });
     } catch {
       dispatch({
         type: 'rejected',
