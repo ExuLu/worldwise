@@ -85,8 +85,8 @@ const CitiesProvider = ({ children }) => {
   };
 
   const createCity = async (newCity) => {
+    dispatch({ type: 'loading' });
     try {
-      setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities`, {
         method: 'POST',
         body: JSON.stringify(newCity),
@@ -98,22 +98,19 @@ const CitiesProvider = ({ children }) => {
       setCities((cities) => [...cities, data]);
     } catch {
       alert('There was an error while creating data...');
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const deleteCity = async (id) => {
+    dispatch({ type: 'loading' });
+
     try {
-      setIsLoading(true);
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
       setCities((cities) => cities.filter((city) => city.id !== id));
     } catch {
       alert('There was an error while deleting data...');
-    } finally {
-      setIsLoading(false);
     }
   };
 
