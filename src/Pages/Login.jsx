@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import PageNav from '../components/PageNav';
+
+import { useAuth } from '../hooks/useAuth';
 
 import styles from './Login.module.css';
 
 const Login = () => {
   // PRE-FILL FOR DEV PURPOSES
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('jack@example.com');
   const [password, setPassword] = useState('qwerty');
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/app');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   return (
     <main className={styles.login}>
