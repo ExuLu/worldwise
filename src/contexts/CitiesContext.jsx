@@ -32,7 +32,17 @@ const reducer = (state, action) => {
         currentCity: action.payload,
       };
     case 'cities/created':
+      return {
+        ...state,
+        isLoading: false,
+        cities: [...state.cities, action.payload],
+      };
     case 'cities/deleted':
+      return {
+        ...state,
+        isLoading: false,
+        cities: [...state.cities].filter((city) => city.id !== action.payload),
+      };
     case 'rejected':
       return {
         ...state,
@@ -95,7 +105,7 @@ const CitiesProvider = ({ children }) => {
         },
       });
       const data = await res.json();
-      setCities((cities) => [...cities, data]);
+      dispatch({ type: 'cities/created', payload: data });
     } catch {
       dispatch({
         type: 'rejected',
@@ -111,7 +121,7 @@ const CitiesProvider = ({ children }) => {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
-      setCities((cities) => cities.filter((city) => city.id !== id));
+      dispatch({ type: 'cities/deleted', payload: id });
     } catch {
       dispatch({
         type: 'rejected',
