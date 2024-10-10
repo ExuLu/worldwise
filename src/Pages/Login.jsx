@@ -17,13 +17,12 @@ const Login = () => {
   const [password, setPassword] = useState('qwerty');
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/app');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
+    if (isAuthenticated) navigate('/app', { replace: true });
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    if (email && password) login(email, password);
   };
 
   return (
