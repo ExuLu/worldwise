@@ -16,7 +16,6 @@ const City = () => {
 
   useEffect(() => {
     getCity(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const { cityName, emoji, date, notes } = currentCity;
